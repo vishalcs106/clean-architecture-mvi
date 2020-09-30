@@ -1,6 +1,7 @@
 package dependencies
 
 import Versions.coroutines_version
+import Versions.okhttp_version
 
 object Dependencies {
     val kotlin_standard_library = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
@@ -26,4 +27,6 @@ object Dependencies {
     val retrofit_gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit2_version}"
     val coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    val okhttp = "com.squareup.okhttp3:okhttp:$okhttp_version"
+    val okhttp_logging = "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 }

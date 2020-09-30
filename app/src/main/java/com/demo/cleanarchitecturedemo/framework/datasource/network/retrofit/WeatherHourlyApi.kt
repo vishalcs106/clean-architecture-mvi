@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface WeatherHourlyApi {
-    @GET("/data/2.5/forecast/hourly")
+    @GET("data/2.5/forecast/hourly")
     suspend fun get(@Query("q") city: String, @Query("appid") appId: String ): WeatherHourlyResponse
 
 }

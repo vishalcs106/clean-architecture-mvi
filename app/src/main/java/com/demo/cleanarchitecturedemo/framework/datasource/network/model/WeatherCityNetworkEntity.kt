@@ -7,7 +7,11 @@ data class WeatherCityNetworkEntity(
 
     @SerializedName("id")
     @Expose
-    var id: String,
+    var id: Int,
+
+    @SerializedName("name")
+    @Expose
+    var name: String,
 
     @SerializedName("dt")
     @Expose
@@ -19,5 +23,5 @@ data class WeatherCityNetworkEntity(
 
     @SerializedName("weather")
     @Expose
-    var weather: Weather
+    var weather: List<Weather>
 )

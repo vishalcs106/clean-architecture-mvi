@@ -14,7 +14,7 @@ data class WeatherHourlyNetworkEntity(
 
     @SerializedName("weather")
     @Expose
-    var weather: Weather,
+    var weather: List<Weather>,
 
     @SerializedName("dt_txt")
     @Expose

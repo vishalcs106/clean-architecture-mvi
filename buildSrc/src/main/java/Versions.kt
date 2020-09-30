@@ -14,5 +14,6 @@ object Versions {
     val lifecycle_version = "2.2.0"
     val retrofit2_version = "2.9.0"
     val coroutines_version = "1.3.9"
+    val okhttp_version = "4.9.0"
 }
 

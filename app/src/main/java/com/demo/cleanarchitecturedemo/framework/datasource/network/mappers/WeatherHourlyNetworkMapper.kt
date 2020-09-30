@@ -19,12 +19,12 @@ class WeatherHourlyNetworkMapper: EntityMapper<WeatherHourlyNetworkEntity, Weath
 
     override fun mapFromEntity(entity: WeatherHourlyNetworkEntity): WeatherHourly {
         return WeatherHourly(entity.main.temp, entity.main.tempMin, entity.main.tempMax,
-            entity.weather.main, entity.weather.description, entity.dtString, entity.dt)
+            entity.weather[0].main, entity.weather[0].description, entity.dtString, entity.dt)
     }
 
     override fun mapToEntity(domainModel: WeatherHourly): WeatherHourlyNetworkEntity {
         return WeatherHourlyNetworkEntity(domainModel.timestamp,
             Main(domainModel.temp, domainModel.tempMin, domainModel.tempMax),
-        Weather(domainModel.weather, domainModel.weatherDesc), domainModel.dateTime)
+        arrayListOf(Weather(domainModel.weather, domainModel.weatherDesc)), domainModel.dateTime)
     }
 }

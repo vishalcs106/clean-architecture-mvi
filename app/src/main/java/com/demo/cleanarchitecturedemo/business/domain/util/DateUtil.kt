@@ -8,4 +8,8 @@ class DateUtil {
     fun getTimeFromDate(str: String): String {
         return str.substring(11, 16)
     }
+
+    fun getDateString(str: String): String {
+        return str.substring(0, 10)
+    }
 }

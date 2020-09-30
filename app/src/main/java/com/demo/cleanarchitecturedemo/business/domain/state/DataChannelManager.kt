@@ -28,26 +28,24 @@ abstract class DataChannelManager<ViewState> {
         stateEvent: StateEvent,
         jobFunction: Flow<DataState<ViewState>?>
     ){
-        if(canExecuteNewStateEvent(stateEvent)){
-            addStateEvent(stateEvent)
-            jobFunction
-                .onEach { dataState ->
-                    dataState?.let { dState ->
-                        withContext(Main){
-                            dataState.data?.let { data ->
-                                handleNewData(data)
-                            }
-                            dataState.stateMessage?.let { stateMessage ->
-                                handleNewStateMessage(stateMessage)
-                            }
-                            dataState.stateEvent?.let { stateEvent ->
-                                removeStateEvent(stateEvent)
-                            }
+        addStateEvent(stateEvent)
+        jobFunction
+            .onEach { dataState ->
+                dataState?.let { dState ->
+                    withContext(Main){
+                        dataState.data?.let { data ->
+                            handleNewData(data)
+                        }
+                        dataState.stateMessage?.let { stateMessage ->
+                            handleNewStateMessage(stateMessage)
+                        }
+                        dataState.stateEvent?.let { stateEvent ->
+                            removeStateEvent(stateEvent)
                         }
                     }
                 }
-                .launchIn(getChannelScope())
-        }
+            }
+            .launchIn(getChannelScope())
     }
 
     private fun canExecuteNewStateEvent(stateEvent: StateEvent): Boolean{

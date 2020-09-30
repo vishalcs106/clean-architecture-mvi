@@ -8,11 +8,12 @@ import com.demo.cleanarchitecturedemo.framework.datasource.network.model.Weather
 
 class WeatherCityNetworkMapper: EntityMapper<WeatherCityNetworkEntity, CityWeather> {
     override fun mapFromEntity(entity: WeatherCityNetworkEntity): CityWeather {
-        return CityWeather(entity.id, entity.main.temp, entity.weather.main)
+        return CityWeather(entity.id.toString(), entity.name, entity.main.temp, entity.weather[0].main)
     }
 
     override fun mapToEntity(domainModel: CityWeather): WeatherCityNetworkEntity {
-        return WeatherCityNetworkEntity(domainModel.id, 0L,
-            Main(domainModel.temperature, 0.0, 0.0), Weather(domainModel.weather, ""))
+        return WeatherCityNetworkEntity(domainModel.id.toInt(), domainModel.name, 0L,
+            Main(domainModel.temperature, 0.0, 0.0),
+            arrayListOf<Weather>(Weather(domainModel.weather, "")))
     }
 }

@@ -12,9 +12,8 @@ import kotlinx.coroutines.flow.flow
 
 class AddCity(
     private val cityCacheDataSource: CityCacheDataSource
-) {
-    fun addCity(city: City, stateEvent: StateEvent): Flow<DataState<CityListViewState>?> = flow {
-
+){
+    fun addCity(city: City, cityList: List<City>?, stateEvent: StateEvent): Flow<DataState<CityListViewState>?> = flow {
         val cacheResult = safeCacheCall(IO) {
             cityCacheDataSource.addCity(city)
         }
@@ -26,6 +25,7 @@ class AddCity(
             override suspend fun handleSuccess(resultObj: Unit): DataState<CityListViewState>? {
                 val viewState =
                     CityListViewState()
+
                 return DataState.data(
                     response = Response(
                         message = "Successfully added city.",
