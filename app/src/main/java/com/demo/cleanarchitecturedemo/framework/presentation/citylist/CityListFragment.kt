@@ -30,7 +30,7 @@ class CityListFragment
     ): BaseFragment(R.layout.fragment_city_list), CityListAdapter.Interactions {
 
     private var listAdapter: CityListAdapter? = null
-    
+    var interaction: Interaction? = null
     val viewModel: CityListViewModel by viewModels {
         viewModelFactory
     }
@@ -124,13 +124,16 @@ class CityListFragment
     }
 
     override fun onCityTapped(city: City) {
-        val bundle= Bundle()
-        bundle.putParcelable("city", city)
-        findNavController().navigate(R.id.action_cityListFragment_to_weatherDetailFragment, bundle)
+        interaction?.onCityTapped(city)
     }
 
     override fun onRemoveCityTapped(city: City) {
         viewModel.setStateEvent(CityStateEvent.RemoveCityEvent(city = city))
         updateRecyclerView(city, false)
     }
+
+    interface Interaction{
+        fun onCityTapped(city: City)
+    }
+
 }

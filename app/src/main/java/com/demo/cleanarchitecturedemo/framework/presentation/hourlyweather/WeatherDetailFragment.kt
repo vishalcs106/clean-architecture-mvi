@@ -45,13 +45,6 @@ class WeatherDetailFragment  constructor(
         super.onViewCreated(view, savedInstanceState)
         readArgs()
         subscribeObservers()
-        requireActivity().getOnBackPressedDispatcher().addCallback(requireActivity(), object: OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                findNavController().navigate(R.id.action_weatherDetailFragment_to_cityListFragment)
-            }
-
-        });
-
     }
 
     private fun readArgs() {
